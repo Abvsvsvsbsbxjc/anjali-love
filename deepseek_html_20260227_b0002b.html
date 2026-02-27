@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Anjali ❤️ Bittu – har next pe naya surprise</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', 'Segoe UI', 'Poppins', sans-serif;
+    }
+
+    body {
+      overflow: hidden;
+      background: #fff0f5;
+      color: #5e2a44;
+      text-align: center;
+      touch-action: none;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #ffe6f0, #ffd9e8, #ffcce0, #ffb3d1);
+      background-size: 400% 400%;
+      animation: softFlow 16s ease infinite;
+      z-index: 0;
+      opacity: 1;
+    }
+
+    @keyframes softFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .bg::before {
+      content: '❤️ 💕 💖 💗 💓 💞 💘 💝';
+      position: absolute;
+      font-size: 3rem;
+      width: 100%;
+      height: 100%;
+      opacity: 0.15;
+      animation: floatText 30s linear infinite;
+      pointer-events: none;
+      color: #ff99bb;
+      white-space: nowrap;
+      text-shadow: 0 0 10px #ffa5c3;
+    }
+
+    @keyframes floatText {
+      from { transform: translateX(0) translateY(0); }
+      to { transform: translateX(-50%) translateY(-20px); }
+    }
+
+    .love-meter {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 400px;
+      height: 30px;
+      background: #ffe0f0;
+      backdrop-filter: blur(6px);
+      border-radius: 60px;
+      overflow: hidden;
+      border: 3px solid #ff99bb;
+      box-shadow: 0 10px 25px #ffb3c6, 0 0 0 4px #ffe6f0 inset;
+      z-index: 10;
+    }
+
+    .love-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff99bb, #ffc0cb, #ffb3d9);
+      box-shadow: 0 0 25px #ff66a5;
+      transition: width 0.2s ease;
+      border-radius: 60px;
+    }
+
+    .screen {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: rgba(255, 240, 245, 0.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 20;
+      padding: 20px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    button {
+      padding: 14px 40px;
+      margin: 12px;
+      border: none;
+      border-radius: 100px;
+      font-size: 1.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: #ff99bb;
+      color: #4a1e2f;
+      box-shadow: 0 8px 0 #b35f7a, 0 15px 25px #ffb3d1;
+      transition: all 0.1s cubic-bezier(0.2, 1.5, 0.5, 1);
+      border: 3px solid white;
+      letter-spacing: 1.5px;
+      transform: translateY(0);
+    }
+
+    button:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 0 #b35f7a, 0 20px 30px #ff99bb;
+      background: #ffaac8;
+    }
+
+    button:active {
+      transform: translateY(6px);
+      box-shadow: 0 2px 0 #b35f7a;
+    }
+
+    #yes-btn {
+      background: #ff66a3;
+      color: white;
+      box-shadow: 0 8px 0 #b32d5e, 0 15px 30px #ff80bf;
+      border: 3px solid gold;
+      font-size: 2rem;
+      padding: 16px 50px;
+    }
+
+    #no-btn {
+      background: #c0a0b0;
+      color: #3a1e2a;
+      box-shadow: 0 8px 0 #7a5a68;
+      border: 3px dashed #ffe6f0;
+      font-size: 1.5rem;
+      transition: none;
+      cursor: default;
+    }
+
+    #no-btn:hover {
+      transform: none;
+      box-shadow: 0 8px 0 #7a5a68;
+      background: #c0a0b0;
+    }
+
+    h1 {
+      font-size: 4rem;
+      text-shadow: 0 10px 20px #ff99bb, 0 0 50px white;
+      margin-bottom: 15px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #632c44;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: #803a5a;
+      text-shadow: 0 2px 10px white;
+    }
+
+    .memory-page {
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 100px 100px 60px 60px;
+      padding: 30px 25px 20px;
+      max-width: 900px;
+      width: 95%;
+      margin: 15px;
+      border: 6px solid white;
+      box-shadow: 0 30px 40px #ff99bb, 0 0 0 8px #ffd9e8 inset;
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    .memory-page.pop {
+      animation: cardPop 0.4s ease-out;
+    }
+
+    @keyframes cardPop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.03); box-shadow: 0 40px 60px #ff66a5; }
+      100% { transform: scale(1); }
+    }
+
+    .memory-image {
+      width: 280px;
+      height: 280px;
+      border-radius: 130px 130px 60px 60px;
+      overflow: hidden;
+      border: 8px solid white;
+      box-shadow: 0 20px 30px #ff99bb;
+      margin: 10px 0 15px;
+      background: #ffe6f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      color: #ff80b3;
+      animation: float 5s ease-in-out infinite;
+      transition: filter 0.3s, transform 0.3s;
+    }
+
+    .memory-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .memory-image.heart-filter {
+      filter: drop-shadow(0 0 15px hotpink) brightness(1.1) saturate(1.3);
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0.5deg); }
+      50% { transform: translateY(-12px) rotate(-0.5deg); }
+      100% { transform: translateY(0px) rotate(0.5deg); }
+    }
+
+    .memory-text {
+      font-size: 2.4rem;
+      font-weight: 600;
+      margin: 10px 0 10px;
+      color: #632c44;
+      text-shadow: 0 4px 10px #ffb3d1;
+      line-height: 1.4;
+      min-height: 4rem;
+      padding: 12px 25px;
+      background: rgba(255,255,240,0.6);
+      border-radius: 80px;
+      transition: all 0.3s;
+    }
+
+    .memory-text.glow {
+      background: #ffe6f0;
+      box-shadow: 0 0 30px gold;
+    }
+
+    .surprise-box {
+      background: #ffe6f0dd;
+      border-radius: 50px;
+      padding: 15px 25px;
+      margin: 15px 0;
+      font-size: 2rem;
+      border: 4px dashed white;
+      box-shadow: 0 10px 0 #b35f85;
+      width: 80%;
+      animation: surprisePop 0.5s;
+    }
+
+    @keyframes surprisePop {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .surprise-button {
+      background: gold;
+      color: #a53f65;
+      font-size: 1.8rem;
+      padding: 10px 30px;
+      border-radius: 40px;
+      border: 3px solid white;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #b37f4d;
+      transition: 0.1s;
+    }
+
+    .surprise-button:active {
+      transform: translateY(5px);
+      box-shadow: 0 0 0 #b37f4d;
+    }
+
+    .memory-nav {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 20px 0 10px;
+    }
+
+    .memory-nav button {
+      padding: 12px 35px;
+      font-size: 1.8rem;
+      background: #ffb3d9;
+      color: #4a1e2f;
+      box-shadow: 0 5px 0 #b35f85;
+      border-radius: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .memory-nav button::after {
+      content: '✨';
+      position: absolute;
+      right: 10px;
+      top: 5px;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: 0.3s;
+    }
+
+    .memory-nav button:hover::after {
+      opacity: 1;
+      transform: rotate(20deg);
+    }
+
+    .memory-timer-bar {
+      width: 70%;
+      height: 24px;
+      background: #ffd9e8;
+      border-radius: 60px;
+      margin: 5px auto;
+      overflow: hidden;
+      border: 4px solid white;
+      box-shadow: 0 5px 0 #b38f9f;
+    }
+
+    .memory-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff99cc, #ffc0cb);
+      border-radius: 60px;
+      transition: width 0.4s linear;
+      box-shadow: 0 0 15px hotpink;
+    }
+
+    .small-note {
+      font-size: 1.8rem;
+      color: #b3476b;
+      margin-top: 5px;
+      font-weight: 600;
+      background: #fff0f5dd;
+      padding: 8px 25px;
+      border-radius: 60px;
+      display: inline-block;
+      box-shadow: 0 5px 0 #d9a3b5;
+    }
+
+    .celebration {
+      background: rgba(255, 200, 220, 0.9);
+      animation: sparkle 1.8s infinite alternate;
+    }
+
+    @keyframes sparkle {
+      from { backdrop-filter: blur(12px) brightness(1.2); }
+      to { backdrop-filter: blur(20px) brightness(1.6); }
+    }
+
+    .big-heart {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      font-size: 20rem;
+      z-index: 100;
+      pointer-events: none;
+      animation: bigHeartPop 1.4s ease-out forwards;
+      text-shadow: 0 0 60px #ff99aa, 0 0 120px white;
+      filter: drop-shadow(0 20px 30px hotpink);
+    }
+
+    @keyframes bigHeartPop {
+      0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+      40% { transform: translate(-50%, -50%) scale(1.2) rotate(8deg); opacity: 0.9; }
+      70% { transform: translate(-50%, -50%) scale(1.6) rotate(-5deg); opacity: 0.7; }
+      100% { transform: translate(-50%, -50%) scale(2.2) rotate(3deg); opacity: 0; }
+    }
+
+    .teddy {
+      font-size: 5rem;
+      animation: wave 2s infinite;
+      display: inline-block;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 10px 15px #ff99aa);
+    }
+
+    @keyframes wave {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(10deg); }
+      75% { transform: rotate(-10deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .sparkle-effect {
+      position: fixed;
+      pointer-events: none;
+      font-size: 2rem;
+      animation: sparkleFly 1s forwards;
+      z-index: 50;
+    }
+
+    @keyframes sparkleFly {
+      0% { transform: scale(0) rotate(0); opacity: 1; }
+      100% { transform: scale(3) rotate(360deg); opacity: 0; top: var(--endY); left: var(--endX); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 3rem; }
+      .memory-text { font-size: 2rem; }
+      button { font-size: 1.4rem; padding: 10px 25px; }
+      .memory-image { width: 200px; height: 200px; }
+      .big-heart { font-size: 12rem; }
+      .surprise-box { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<div class="love-meter">
+  <div class="love-fill" id="love-fill"></div>
+</div>
+
+<canvas id="gameCanvas"></canvas>
+
+<div id="big-heart-container"></div>
+
+<!-- START SCREEN -->
+<div class="screen" id="start-screen">
+  <div class="teddy">🧸💕</div>
+  <h1>💕 Anjali 🤍 Bittu 💕</h1>
+  <h2 style="margin-bottom: 20px;">girte hue dil pakdo, har next pe naya surprise</h2>
+  <button id="start-btn">✨ 2 minute ka mazedaar safar ✨</button>
+  <p style="margin-top: 30px; color: #a53f65; font-size: 1.6rem; background: #ffe6f0aa; padding: 8px 30px; border-radius: 60px;">
+    ❤️ 15 dil pakdo aur kholein apni kahani ❤️
+  </p>
+</div>
+
+<!-- PROPOSAL SCREEN -->
+<div class="screen hidden" id="proposal-screen">
+  <div class="teddy">🥺💍🧸</div>
+  <h1>💍 meri jaan, Anjali 💍</h1>
+  <h2 style="margin: 15px;">kya tum meri forever banogi?</h2>
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+    <button id="yes-btn">HAAN! bilkul 💖</button>
+    <button id="no-btn">Nahi 😜 (bhagte raho)</button>
+  </div>
+  <p class="small-note" style="margin-top: 25px;">(ye 'Nahi' button bohot shaitaan hai – pakadna mushkil!)</p>
+</div>
+
+<!-- MEMORY LANE with surprises -->
+<div class="screen hidden" id="memory-screen">
+  <div class="memory-page" id="memory-card">
+    <div class="memory-image" id="memory-image">❤️</div>
+    <div class="memory-text" id="memory-message">loading yaadein...</div>
+    
+    <!-- Surprise element will appear here dynamically -->
+    <div id="surprise-container" class="surprise-box" style="display: none;"></div>
+    
+    <p class="small-note" id="memory-timer-display">✨ 2 minute mein hogi shaadi ✨</p>
+    <div class="memory-timer-bar">
+      <div class="memory-fill" id="memory-progress"></div>
+    </div>
+
+    <div class="memory-nav">
+      <button id="prev-memory">◀ pichhli</button>
+      <button id="next-memory">agli ▶ <span style="font-size:1rem;">(naya surprise!)</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- CELEBRATION SCREEN -->
+<div class="screen hidden celebration" id="celebration-screen">
+  <div class="teddy">🎉💞👰‍♀️🤵‍♂️🎉</div>
+  <h1>💞 USNE HAAN KAR DI!!! 💞</h1>
+  <h2 style="margin-bottom: 20px;">Anjali ❤️ Bittu ab hamesha ke liye</h2>
+  <div style="font-size: 6rem; line-height: 1.4;">💍👰‍♀️🤵‍♂️💥</div>
+  <p style="margin: 30px 20px; font-size: 2.4rem; color: #4a1e2f; background: rgba(255,255,200,0.6); padding: 20px 35px; border-radius: 100px; border: 5px solid white;">
+    😔 sorry meri jaan... ab khush? 💖
+  </p>
+  <button id="replay-btn" style="margin-top: 20px; background: gold; color: #a53f65;">phir se jeene do ye pal ✨</button>
+</div>
+
+<script>
+(function() {
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  let gameState = 'START';
+  let score = 0;
+  const WIN_SCORE = 15;
+  let player = null;
+  let hearts = [];
+  let confettiParticles = [];
+  let memoryHeartTrail = [];
+
+  // DOM
+  const loveFill = document.getElementById('love-fill');
+  const startScreen = document.getElementById('start-screen');
+  const proposalScreen = document.getElementById('proposal-screen');
+  const memoryScreen = document.getElementById('memory-screen');
+  const celebrationScreen = document.getElementById('celebration-screen');
+  const memoryMsg = document.getElementById('memory-message');
+  const memoryImage = document.getElementById('memory-image');
+  const memoryProgress = document.getElementById('memory-progress');
+  const memoryTimerDisplay = document.getElementById('memory-timer-display');
+  const noBtn = document.getElementById('no-btn');
+  const yesBtn = document.getElementById('yes-btn');
+  const prevBtn = document.getElementById('prev-memory');
+  const nextBtn = document.getElementById('next-memory');
+  const replayBtn = document.getElementById('replay-btn');
+  const bigHeartContainer = document.getElementById('big-heart-container');
+  const surpriseContainer = document.getElementById('surprise-container');
+  const memoryCard = document.getElementById('memory-card');
+
+  // ----- MEMORIES with surprises (har next pe naya maza) -----
+  const memories = [
+    { 
+      text: "💌 pehli baar jab tum muskurayi – mera dil pighal gaya",
+      img: "memory1.jpg",
+      surprise: "quiz",
+      question: "humari pehli date kis jagah thi?",
+      options: ["Cafe", "Park", "Mall", "College"],
+      correct: 1
+    },
+    { 
+      text: "🌙 wo 4 am call jab humne sapne share kiye",
+      img: "memory2.jpg",
+      surprise: "gift",
+      gift: "🎁 chhota sa gift khole?",
+      emoji: "🎀"
+    },
+    { 
+      text: "🍦 pehli ice cream date – tumne chocolate, maine strawberry",
+      img: "memory3.jpg",
+      surprise: "task",
+      task: "mujhe ek virtual kiss do 💋",
+      action: "kiss"
+    },
+    { 
+      text: "📸 wo mast selfie jisme hum dono haste haste behal hue",
+      img: "memory4.jpg",
+      surprise: "note",
+      note: "💌 tumhari hassi meri duniya hai"
+    },
+    { 
+      text: "🎁 wo chhota sa note tumne diya tha – aaj bhi rakha hai",
+      img: "memory5.jpg",
+      surprise: "hug",
+      hug: "🤗 teddy bear ne gale laga liya!"
+    },
+    { 
+      text: "🌅 sunset drive, tumhara haath mere haath mein – sukoon",
+      img: "memory6.jpg",
+      surprise: "magic",
+      magic: "✨ magic sparkle!"
+    },
+    { 
+      text: "🥺 tum jab ro di thi mere kandhe par",
+      img: "memory7.jpg",
+      surprise: "filter",
+      filter: "heart-filter",
+      message: "❤️ ab tumhare aankhon mein khushi hai"
+    },
+    { 
+      text: "💋 pehla kiss – itna pyaara, jaise film ho",
+      img: "memory8.jpg",
+      surprise: "iloveyou",
+      language: "French: Je t'aime",
+      emoji: "🇫🇷"
+    },
+    { 
+      text: "💬 har subah ka 'good morning' text – din ban jaata hai",
+      img: "memory9.jpg",
+      surprise: "song",
+      song: "🎵 tum hi ho... 🎵"
+    },
+    { 
+      text: "🌟 tumne mujh par bharosa kiya jab khud par nahi tha",
+      img: "memory10.jpg",
+      surprise: "baby",
+      baby: "👶 dekho kaun baby jaisa cute hai? tum! 😘"
+    },
+    { 
+      text: "💞 us pal jaise light si lagi – tum hi ho meri duniya",
+      img: "💞",
+      surprise: "sparkle",
+      sparkle: "✨✨✨"
+    },
+    { 
+      text: "🏡 chhota sa ghar, bagiya – tumhare sang sapna",
+      img: "🏡",
+      surprise: "cuddle",
+      cuddle: "🧸 teddy ne kaha: main bhi saath rahunga"
+    },
+    { 
+      text: "👵👫 saath mein budhe honge, haath pakde hue",
+      img: "👫",
+      surprise: "promise",
+      promise: "💍 100 saal ka promise! pakda?"
+    },
+    { 
+      text: "🎶 wo gaana jo hum dono ko pasand hai – ab 'our song'",
+      img: "🎶",
+      surprise: "dance",
+      dance: "💃 thoda dance karo? next dabao!"
+    }
+  ];
+
+  let currentMemoryIndex = 0;
+  let memoryInterval = null;
+  let memoryTotalSeconds = 120;
+  let memoryElapsed = 0;
+  let memoryTimerInterval = null;
+
+  // surprise state
+  let currentSurprise = null;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    if (player) {
+      player.x = Math.min(Math.max(player.x, 0), canvas.width - player.w);
+    }
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  class Player {
+    constructor() {
+      this.w = 120;
+      this.h = 100;
+      this.x = canvas.width / 2 - this.w / 2;
+      this.y = canvas.height - 120;
+    }
+    draw() {
+      ctx.shadowColor = '#ff99cc';
+      ctx.shadowBlur = 40;
+      ctx.fillStyle = '#ffb3c6';
+      ctx.beginPath();
+      ctx.ellipse(this.x + this.w/2, this.y - 15, this.w/2, this.h/2, 0, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = '#ffd9e8';
+      ctx.beginPath();
+      ctx.arc(this.x + this.w/3, this.y-40, 18, 0, Math.PI*2);
+      ctx.arc(this.x + 2*this.w/3, this.y-40, 18, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = '#000';
+      ctx.beginPath();
+      ctx.arc(this.x + this.w/3-3, this.y-45, 4, 0, Math.PI*2);
+      ctx.arc(this.x + 2*this.w/3+3, this.y-45, 4, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = '#ff80b3';
+      ctx.beginPath();
+      ctx.arc(this.x + this.w/3+2, this.y-30, 5, 0, Math.PI*2);
+      ctx.arc(this.x + 2*this.w/3-2, this.y-30, 5, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+
+  class Heart {
+    constructor() {
+      this.size = Math.floor(Math.random() * 35 + 30);
+      this.x = Math.random() * (canvas.width - 50);
+      this.y = -this.size;
+      this.speed = Math.random() * 2.5 + 1.5;
+    }
+    draw() {
+      ctx.font = `${this.size}px 'Segoe UI', 'Arial', sans-serif`;
+      ctx.shadowColor = '#ff99cc';
+      ctx.shadowBlur = 30;
+      ctx.fillStyle = '#ff3385';
+      ctx.fillText('❤️', this.x, this.y);
+    }
+    update() {
+      this.y += this.speed;
+    }
+  }
+
+  class Confetti {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 10 + 4;
+      this.color = `hsl(${Math.random()*30 + 330}, 80%, 70%)`;
+      this.speedY = Math.random() * 3 + 1;
+      this.speedX = (Math.random() - 0.5) * 1.2;
+    }
+    update() {
+      this.y += this.speedY;
+      this.x += this.speedX;
+      if (this.y > canvas.height) {
+        this.y = -10;
+        this.x = Math.random() * canvas.width;
+      }
+    }
+    draw() {
+      ctx.fillStyle = this.color;
+      ctx.shadowBlur = 20;
+      ctx.fillRect(this.x, this.y, this.size, this.size);
+    }
+  }
+
+  function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (gameState !== 'START') {
+      if (gameState === 'PLAYING') {
+        if (player) player.draw();
+        if (Math.random() < 0.03) hearts.push(new Heart());
+        hearts.forEach((heart, idx) => {
+          heart.update();
+          heart.draw();
+          if (player && heart.y > player.y-60 && heart.x > player.x-30 && heart.x < player.x + player.w + 30) {
+            hearts.splice(idx, 1);
+            score = Math.min(score + 1, WIN_SCORE);
+            updateLoveMeter();
+            for (let i=0; i<3; i++) confettiParticles.push(new Confetti());
+            if (score >= WIN_SCORE && gameState === 'PLAYING') triggerProposal();
+          }
+          if (heart.y > canvas.height + 60) hearts.splice(idx, 1);
+        });
+      } else {
+        if (Math.random() < 0.01) hearts.push(new Heart());
+        hearts.forEach((heart, idx) => {
+          heart.update();
+          heart.draw();
+          if (heart.y > canvas.height + 50) hearts.splice(idx, 1);
+        });
+      }
+
+      if (gameState === 'MEMORY') {
+        if (Math.random() < 0.15) {
+          memoryHeartTrail.push({ x: Math.random()*canvas.width, y: canvas.height+20, life: 1.0 });
+        }
+        memoryHeartTrail.forEach((h, idx) => {
+          h.y -= 1.8;
+          h.life -= 0.005;
+          ctx.globalAlpha = h.life;
+          ctx.font = '35px Arial';
+          ctx.fillStyle = '#ff99bb';
+          ctx.fillText('💕', h.x, h.y);
+          if (h.life <= 0 || h.y < -40) memoryHeartTrail.splice(idx, 1);
+        });
+        ctx.globalAlpha = 1;
+      }
+
+      if (gameState === 'CELEBRATION') {
+        for (let i=0; i<3; i++) confettiParticles.push(new Confetti());
+        confettiParticles.forEach((p, idx) => {
+          p.update();
+          p.draw();
+          if (p.y > canvas.height + 40) confettiParticles.splice(idx, 1);
+        });
+      }
+    }
+
+    requestAnimationFrame(gameLoop);
+  }
+  gameLoop();
+
+  function updateLoveMeter() {
+    loveFill.style.width = (score / WIN_SCORE * 100) + '%';
+  }
+
+  function triggerProposal() {
+    gameState = 'PROPOSAL';
+    hearts = [];
+    proposalScreen.classList.remove('hidden');
+    if (noBtn) noBtn.style.position = 'static';
+  }
+
+  function showBigHeart() {
+    const heartDiv = document.createElement('div');
+    heartDiv.className = 'big-heart';
+    heartDiv.innerText = '❤️';
+    bigHeartContainer.appendChild(heartDiv);
+    setTimeout(() => heartDiv.remove(), 1400);
+  }
+
+  document.getElementById('start-btn').addEventListener('click', () => {
+    showBigHeart();
+    setTimeout(() => {
+      player = new Player();
+      score = 0;
+      hearts = [];
+      updateLoveMeter();
+      gameState = 'PLAYING';
+      startScreen.classList.add('hidden');
+      proposalScreen.classList.add('hidden');
+      memoryScreen.classList.add('hidden');
+      celebrationScreen.classList.add('hidden');
+    }, 600);
+  });
+
+  yesBtn.addEventListener('click', () => {
+    proposalScreen.classList.add('hidden');
+    gameState = 'MEMORY';
+    memoryScreen.classList.remove('hidden');
+    startMemoryLane();
+  });
+
+  function teleportNoButton() {
+    if (!noBtn) return;
+    noBtn.style.position = 'fixed';
+    const btnWidth = noBtn.offsetWidth || 150;
+    const btnHeight = noBtn.offsetHeight || 60;
+    const maxX = window.innerWidth - btnWidth - 20;
+    const maxY = window.innerHeight - btnHeight - 20;
+    const x = Math.max(10, Math.min(maxX, Math.random() * maxX));
+    const y = Math.max(10, Math.min(maxY, Math.random() * maxY));
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+    if (Math.random() < 0.3) {
+      const msgs = ['🙈 aah gaya!', '💨 pakdo na', '😜 nahi milegi', '❤️ haan bol do'];
+      noBtn.innerText = msgs[Math.floor(Math.random() * msgs.length)];
+    } else {
+      noBtn.innerText = 'Nahi 😜';
+    }
+  }
+
+  if (noBtn) {
+    noBtn.addEventListener('mouseenter', teleportNoButton);
+    noBtn.addEventListener('click', (e) => { e.preventDefault(); teleportNoButton(); });
+    noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); teleportNoButton(); });
+  }
+
+  // Function to create sparkle effect
+  function createSparkle(x, y) {
+    for (let i=0; i<8; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle-effect';
+      sparkle.innerText = ['✨','💫','⭐','🌟'][Math.floor(Math.random()*4)];
+      sparkle.style.left = x + 'px';
+      sparkle.style.top = y + 'px';
+      sparkle.style.setProperty('--endX', (x + (Math.random()-0.5)*200) + 'px');
+      sparkle.style.setProperty('--endY', (y - 100 + Math.random()*200) + 'px');
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 1000);
+    }
+  }
+
+  // Show surprise based on memory type
+  function showSurprise(memory) {
+    surpriseContainer.style.display = 'block';
+    surpriseContainer.innerHTML = '';
+    surpriseContainer.className = 'surprise-box';
+
+    // Remove any previous filters
+    memoryImage.classList.remove('heart-filter');
+    memoryMsg.classList.remove('glow');
+
+    switch(memory.surprise) {
+      case 'quiz':
+        surpriseContainer.innerHTML = `
+          <div style="font-size:2rem;">❓ ${memory.question}</div>
+          ${memory.options.map((opt, i) => `<button class="surprise-button" style="margin:5px; font-size:1.2rem;" onclick="handleQuiz(${i}, ${memory.correct})">${opt}</button>`).join('')}
+          <div id="quiz-result" style="margin-top:10px;"></div>
+        `;
+        window.handleQuiz = (selected, correct) => {
+          const result = document.getElementById('quiz-result');
+          if(selected === correct) {
+            result.innerHTML = '🎉 sahi jawab! tum meri smart girl ho ❤️';
+            createSparkle(event.clientX, event.clientY);
+          } else {
+            result.innerHTML = '😜 thoda aur socho... par tum cute ho!';
+          }
+        };
+        break;
+      case 'gift':
+        surpriseContainer.innerHTML = `
+          <div>${memory.gift}</div>
+          <button class="surprise-button" onclick="openGift()">${memory.emoji} kholo</button>
+          <div id="gift-result"></div>
+        `;
+        window.openGift = () => {
+          document.getElementById('gift-result').innerHTML = '🎀 andar hai: 1 MILLION KISSES! 💋💋💋';
+          createSparkle(event.clientX, event.clientY);
+        };
+        break;
+      case 'task':
+        surpriseContainer.innerHTML = `
+          <div>${memory.task}</div>
+          <button class="surprise-button" onclick="doKiss()">💋 yahan dabao</button>
+        `;
+        window.doKiss = () => {
+          alert('😘 MUAH! thanks baby');
+          createSparkle(event.clientX, event.clientY);
+        };
+        break;
+      case 'note':
+        surpriseContainer.innerHTML = `<div>💌 ${memory.note}</div>`;
+        break;
+      case 'hug':
+        surpriseContainer.innerHTML = `<div>${memory.hug} 🤗🧸</div>`;
+        memoryMsg.classList.add('glow');
+        break;
+      case 'magic':
+        surpriseContainer.innerHTML = `<div>✨✨✨ ab magic hoga! ✨✨✨</div>`;
+        createSparkle(window.innerWidth/2, window.innerHeight/2);
+        break;
+      case 'filter':
+        memoryImage.classList.add('heart-filter');
+        surpriseContainer.innerHTML = `<div>${memory.message || ''} ❤️</div>`;
+        break;
+      case 'iloveyou':
+        surpriseContainer.innerHTML = `<div>${memory.language} ${memory.emoji} 💕</div>`;
+        break;
+      case 'song':
+        surpriseContainer.innerHTML = `<div>${memory.song} 🎶</div>`;
+        break;
+      case 'baby':
+        surpriseContainer.innerHTML = `<div>${memory.baby} 👶🍼</div>`;
+        break;
+      case 'sparkle':
+        surpriseContainer.innerHTML = `<div>${memory.sparkle}</div>`;
+        createSparkle(window.innerWidth/2, window.innerHeight/2);
+        break;
+      case 'cuddle':
+        surpriseContainer.innerHTML = `<div>${memory.cuddle}</div>`;
+        break;
+      case 'promise':
+        surpriseContainer.innerHTML = `<div>${memory.promise} <button class="surprise-button" onclick="alert('💍 pakka promise!')">haan pakda</button></div>`;
+        break;
+      case 'dance':
+        surpriseContainer.innerHTML = `<div>${memory.dance} 💃🕺</div>`;
+        break;
+      default:
+        surpriseContainer.style.display = 'none';
+    }
+  }
+
+  function showMemory(index) {
+    const memory = memories[index];
+    memoryMsg.innerText = memory.text;
+    memoryImage.innerHTML = '';
+    
+    if (typeof memory.img === 'string' && (memory.img.endsWith('.jpg') || memory.img.endsWith('.jpeg') || memory.img.endsWith('.png') || memory.img.endsWith('.gif'))) {
+      const img = document.createElement('img');
+      img.src = memory.img;
+      img.alt = 'memory image';
+      memoryImage.appendChild(img);
+    } else {
+      memoryImage.innerText = memory.img;
+    }
+
+    // Show surprise
+    showSurprise(memory);
+    
+    // Add pop animation
+    memoryCard.classList.add('pop');
+    setTimeout(() => memoryCard.classList.remove('pop'), 500);
+  }
+
+  function startMemoryLane() {
+    currentMemoryIndex = 0;
+    memoryElapsed = 0;
+    showMemory(currentMemoryIndex);
+    memoryProgress.style.width = '0%';
+    if (memoryInterval) clearInterval(memoryInterval);
+    if (memoryTimerInterval) clearInterval(memoryTimerInterval);
+
+    memoryInterval = setInterval(() => {
+      currentMemoryIndex = (currentMemoryIndex + 1) % memories.length;
+      showMemory(currentMemoryIndex);
+    }, 12000);
+
+    memoryTimerInterval = setInterval(() => {
+      memoryElapsed += 1;
+      let percent = (memoryElapsed / memoryTotalSeconds) * 100;
+      memoryProgress.style.width = Math.min(percent, 100) + '%';
+      let left = memoryTotalSeconds - memoryElapsed;
+      let mins = Math.floor(left / 60);
+      let secs = left % 60;
+      memoryTimerDisplay.innerText = `⏳ bachi hui ${mins}:${secs < 10 ? '0' : ''}${secs} – phir hogi shaadi ⏳`;
+      if (memoryElapsed >= memoryTotalSeconds) goToCelebration();
+    }, 1000);
+  }
+
+  function goToCelebration() {
+    if (memoryInterval) clearInterval(memoryInterval);
+    if (memoryTimerInterval) clearInterval(memoryTimerInterval);
+    memoryScreen.classList.add('hidden');
+    gameState = 'CELEBRATION';
+    celebrationScreen.classList.remove('hidden');
+    for (let i=0; i<80; i++) confettiParticles.push(new Confetti());
+  }
+
+  nextBtn.addEventListener('click', (e) => {
+    currentMemoryIndex = (currentMemoryIndex + 1) % memories.length;
+    showMemory(currentMemoryIndex);
+    createSparkle(e.clientX || window.innerWidth/2, e.clientY || window.innerHeight/2);
+  });
+
+  prevBtn.addEventListener('click', (e) => {
+    currentMemoryIndex = (currentMemoryIndex - 1 + memories.length) % memories.length;
+    showMemory(currentMemoryIndex);
+    createSparkle(e.clientX || window.innerWidth/2, e.clientY || window.innerHeight/2);
+  });
+
+  replayBtn.addEventListener('click', () => {
+    gameState = 'START';
+    score = 0;
+    hearts = [];
+    confettiParticles = [];
+    updateLoveMeter();
+    celebrationScreen.classList.add('hidden');
+    startScreen.classList.remove('hidden');
+    if (memoryInterval) clearInterval(memoryInterval);
+    if (memoryTimerInterval) clearInterval(memoryTimerInterval);
+    if (noBtn) {
+      noBtn.style.position = 'static';
+      noBtn.innerText = 'Nahi 😜';
+    }
+    surpriseContainer.style.display = 'none';
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (gameState === 'PLAYING' && player) {
+      let newX = e.clientX - player.w / 2;
+      newX = Math.max(0, Math.min(canvas.width - player.w, newX));
+      player.x = newX;
+    }
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    if (gameState === 'PLAYING' && player && e.touches[0]) {
+      let newX = e.touches[0].clientX - player.w / 2;
+      newX = Math.max(0, Math.min(canvas.width - player.w, newX));
+      player.x = newX;
+    }
+  }, { passive: false });
+
+  window.addEventListener('resize', () => {
+    if (gameState === 'PROPOSAL' && noBtn) teleportNoButton();
+  });
+})();
+</script>
+</body>
+</html>
