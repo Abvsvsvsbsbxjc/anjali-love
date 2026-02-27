@@ -18,6 +18,8 @@
       color: #5e2a44;
       text-align: center;
       touch-action: none;
+      width: 100vw;
+      height: 100vh;
     }
 
     canvas {
@@ -50,7 +52,7 @@
     .bg::before {
       content: '❤️ 💕 💖 💗 💓 💞 💘 💝';
       position: absolute;
-      font-size: 3rem;
+      font-size: clamp(2rem, 8vw, 4rem);
       width: 100%;
       height: 100%;
       opacity: 0.15;
@@ -68,12 +70,11 @@
 
     .love-meter {
       position: fixed;
-      top: 20px;
+      top: 2vh;
       left: 50%;
       transform: translateX(-50%);
-      width: 80%;
-      max-width: 400px;
-      height: 30px;
+      width: min(80%, 400px);
+      height: clamp(20px, 4vh, 30px);
       background: #ffe0f0;
       backdrop-filter: blur(6px);
       border-radius: 60px;
@@ -104,20 +105,19 @@
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       z-index: 20;
-      padding: 20px;
+      padding: clamp(10px, 3vw, 20px);
     }
 
     .hidden {
       display: none !important;
     }
 
-    /* Chote buttons */
     button {
-      padding: 8px 22px;
+      padding: clamp(6px, 2vw, 10px) clamp(12px, 4vw, 22px);
       margin: 8px;
       border: none;
       border-radius: 60px;
-      font-size: 1.3rem;
+      font-size: clamp(1rem, 4vw, 1.6rem);
       font-weight: 600;
       cursor: pointer;
       background: #ff99bb;
@@ -145,8 +145,8 @@
       color: white;
       box-shadow: 0 4px 0 #b32d5e, 0 8px 20px #ff80bf;
       border: 2px solid gold;
-      font-size: 1.6rem;
-      padding: 10px 35px;
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      padding: clamp(8px, 3vw, 12px) clamp(20px, 8vw, 35px);
     }
 
     #no-btn {
@@ -154,7 +154,7 @@
       color: #3a1e2a;
       box-shadow: 0 4px 0 #7a5a68;
       border: 2px dashed #ffe6f0;
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 4vw, 1.4rem);
       transition: none;
       cursor: default;
     }
@@ -166,7 +166,7 @@
     }
 
     h1 {
-      font-size: 3.5rem;
+      font-size: clamp(2.2rem, 8vw, 4rem);
       text-shadow: 0 10px 20px #ff99bb, 0 0 50px white;
       margin-bottom: 10px;
       font-weight: 800;
@@ -175,19 +175,18 @@
     }
 
     h2 {
-      font-size: 2rem;
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
       font-weight: 400;
       color: #803a5a;
       text-shadow: 0 2px 10px white;
     }
 
-    /* Memory page */
     .memory-page {
       background: rgba(255, 255, 255, 0.6);
-      border-radius: 80px 80px 50px 50px;
-      padding: 20px 20px 15px;
-      max-width: 950px;
-      width: 95%;
+      border-radius: clamp(30px, 10vw, 80px) clamp(30px, 10vw, 80px) clamp(20px, 5vw, 50px) clamp(20px, 5vw, 50px);
+      padding: clamp(10px, 3vw, 20px);
+      max-width: min(95%, 950px);
+      width: 100%;
       margin: 10px;
       border: 5px solid white;
       box-shadow: 0 20px 30px #ff99bb, 0 0 0 6px #ffd9e8 inset;
@@ -207,11 +206,10 @@
       100% { transform: scale(1); }
     }
 
-    /* Badi image */
     .memory-image {
-      width: 380px;
-      height: 380px;
-      border-radius: 160px 160px 70px 70px;
+      width: min(70vw, 70vh, 380px);
+      height: min(70vw, 70vh, 380px);
+      border-radius: 50% 50% 30% 30%;
       overflow: hidden;
       border: 8px solid white;
       box-shadow: 0 20px 30px #ff99bb;
@@ -220,7 +218,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 7rem;
+      font-size: clamp(4rem, 15vw, 7rem);
       color: #ff80b3;
       animation: float 5s ease-in-out infinite;
     }
@@ -230,7 +228,6 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      animation: float 5s ease-in-out infinite;
     }
 
     .memory-image.heart-filter {
@@ -244,16 +241,18 @@
     }
 
     .memory-text {
-      font-size: 2.2rem;
+      font-size: clamp(1.4rem, 5vw, 2.2rem);
       font-weight: 600;
       margin: 5px 0 10px;
       color: #632c44;
       text-shadow: 0 4px 8px #ffb3d1;
       line-height: 1.4;
-      min-height: 3.5rem;
-      padding: 10px 25px;
+      min-height: clamp(2.5rem, 8vh, 4rem);
+      padding: clamp(5px, 2vw, 10px) clamp(10px, 4vw, 25px);
       background: rgba(255,255,240,0.6);
       border-radius: 60px;
+      width: 100%;
+      word-break: break-word;
     }
 
     .memory-text.glow {
@@ -261,17 +260,16 @@
       box-shadow: 0 0 20px gold;
     }
 
-    /* Surprise box - envelope style */
     .surprise-box {
       background: #ffe6f0dd;
       border-radius: 40px;
-      padding: 15px 20px;
+      padding: clamp(10px, 3vw, 15px);
       margin: 10px 0;
-      font-size: 1.8rem;
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
       border: 4px dashed white;
       box-shadow: 0 8px 0 #b35f85;
-      width: 80%;
-      min-height: 80px;
+      width: min(95%, 600px);
+      min-height: 60px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -283,18 +281,19 @@
     .envelope {
       background: #ffc0cb;
       border-radius: 30px 30px 15px 15px;
-      padding: 20px;
+      padding: clamp(10px, 3vw, 20px);
       position: relative;
       cursor: pointer;
       width: 100%;
       transition: all 0.3s;
       border: 3px solid white;
       box-shadow: 0 5px 0 #b35f85;
+      font-size: clamp(1rem, 4vw, 1.5rem);
     }
 
     .envelope::before {
       content: '✉️';
-      font-size: 3rem;
+      font-size: clamp(2rem, 8vw, 3rem);
       display: block;
     }
 
@@ -310,14 +309,15 @@
     .message-reveal {
       background: white;
       color: #a53f65;
-      padding: 15px 20px;
+      padding: clamp(10px, 3vw, 15px);
       border-radius: 30px;
       margin-top: 10px;
-      font-size: 1.8rem;
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
       border: 3px solid gold;
       box-shadow: 0 5px 0 #b37f4d;
       animation: messagePop 0.5s;
       width: 100%;
+      word-break: break-word;
     }
 
     @keyframes messagePop {
@@ -326,18 +326,17 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* Navigation buttons chote */
     .memory-nav {
       display: flex;
-      gap: 25px;
+      gap: clamp(10px, 4vw, 25px);
       justify-content: center;
       flex-wrap: wrap;
       margin: 10px 0 5px;
     }
 
     .memory-nav button {
-      padding: 8px 25px;
-      font-size: 1.4rem;
+      padding: clamp(6px, 2vw, 8px) clamp(15px, 5vw, 25px);
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
       background: #ffb3d9;
       color: #4a1e2f;
       box-shadow: 0 4px 0 #b35f85;
@@ -345,8 +344,8 @@
     }
 
     .memory-timer-bar {
-      width: 70%;
-      height: 18px;
+      width: min(80%, 400px);
+      height: clamp(12px, 3vh, 18px);
       background: #ffd9e8;
       border-radius: 40px;
       margin: 8px auto;
@@ -365,7 +364,7 @@
     }
 
     .small-note {
-      font-size: 1.5rem;
+      font-size: clamp(1rem, 4vw, 1.5rem);
       color: #b3476b;
       margin-top: 5px;
       font-weight: 600;
@@ -391,7 +390,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0);
-      font-size: 18rem;
+      font-size: clamp(10rem, 40vw, 20rem);
       z-index: 100;
       pointer-events: none;
       animation: bigHeartPop 1.4s ease-out forwards;
@@ -407,7 +406,7 @@
     }
 
     .teddy {
-      font-size: 4rem;
+      font-size: clamp(2.5rem, 10vw, 5rem);
       animation: wave 2s infinite;
       display: inline-block;
       margin-bottom: 5px;
@@ -421,17 +420,12 @@
       100% { transform: rotate(0deg); }
     }
 
-    /* Sparkle and heart animations */
     .sparkle-effect, .heart-effect {
       position: fixed;
       pointer-events: none;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
       animation: floatUp 1s forwards;
       z-index: 100;
-    }
-
-    .heart-effect {
-      font-size: 2.5rem;
     }
 
     @keyframes floatUp {
@@ -439,13 +433,10 @@
       100% { transform: scale(2) translateY(-150px); opacity: 0; }
     }
 
-    @media (max-width: 600px) {
-      h1 { font-size: 2.8rem; }
-      .memory-text { font-size: 1.8rem; }
-      .memory-image { width: 260px; height: 260px; }
-      .big-heart { font-size: 10rem; }
-      .surprise-box { width: 95%; font-size: 1.5rem; }
-      button { font-size: 1.2rem; padding: 6px 18px; }
+    /* Surprise buttons inside quiz */
+    .surprise-button {
+      font-size: clamp(0.9rem, 3.5vw, 1.3rem) !important;
+      padding: clamp(4px, 1.5vw, 8px) clamp(8px, 3vw, 15px) !important;
     }
   </style>
 </head>
@@ -467,7 +458,7 @@
   <h1>💕 Anjali 🤍 Bittu 💕</h1>
   <h2 style="margin-bottom: 15px;">girte hue dil pakdo, har next pe naya surprise</h2>
   <button id="start-btn">✨ 2 minute ka safar ✨</button>
-  <p style="margin-top: 20px; color: #a53f65; font-size: 1.4rem; background: #ffe6f0aa; padding: 6px 25px; border-radius: 50px;">
+  <p style="margin-top: 20px; color: #a53f65; font-size: clamp(1rem, 4vw, 1.5rem); background: #ffe6f0aa; padding: 6px 25px; border-radius: 50px;">
     ❤️ 15 dil pakdo aur kholein apni kahani ❤️
   </p>
 </div>
@@ -510,8 +501,8 @@
   <div class="teddy">🎉💞👰‍♀️🤵‍♂️🎉</div>
   <h1>💞 USNE HAAN KAR DI!!! 💞</h1>
   <h2 style="margin-bottom: 15px;">Anjali ❤️ Bittu ab hamesha ke liye</h2>
-  <div style="font-size: 5rem;">💍👰‍♀️🤵‍♂️💥</div>
-  <p style="margin: 20px; font-size: 2rem; color: #4a1e2f; background: rgba(255,255,200,0.6); padding: 15px 25px; border-radius: 80px; border: 4px solid white;">
+  <div style="font-size: clamp(3rem, 15vw, 6rem);">💍👰‍♀️🤵‍♂️💥</div>
+  <p style="margin: 20px; font-size: clamp(1.2rem, 5vw, 2rem); color: #4a1e2f; background: rgba(255,255,200,0.6); padding: 15px 25px; border-radius: 80px; border: 4px solid white;">
     😔 sorry meri jaan... ab khush? 💖
   </p>
   <button id="replay-btn" style="margin-top: 15px; background: gold; color: #a53f65;">phir se jeene do ye pal ✨</button>
@@ -527,7 +518,6 @@
   let player = null;
   let hearts = [];
   let confettiParticles = [];
-  let memoryHeartTrail = [];
 
   // DOM
   const loveFill = document.getElementById('love-fill');
@@ -550,26 +540,50 @@
 
   // Memories array
   const memories = [
-    { text: "💌 pehli baar jab tum muskurayi – mera dil pighal gaya", img: "memory1.jpg", surprise: "quiz", question: "humari pehli date kis jagah thi?", options: ["Cafe", "Park", "Mall", "College"], correct: 1 },
-    { text: "🌙 wo 4 am call jab humne sapne share kiye", img: "memory2.jpg", surprise: "gift", gift: "🎁 chhota sa gift khole?", emoji: "🎀" },
-    { text: "🍦 pehli ice cream date – tumne chocolate, maine strawberry", img: "memory3.jpg", surprise: "task", task: "mujhe ek virtual kiss do 💋" },
-    { text: "📸 wo mast selfie jisme hum dono haste haste behal hue", img: "memory4.jpg", surprise: "note", note: "💌 tumhari hassi meri duniya hai" },
-    { text: "🎁 wo chhota sa note tumne diya tha – aaj bhi rakha hai", img: "memory5.jpg", surprise: "hug", hug: "🤗 teddy bear ne gale laga liya!" },
-    { text: "🌅 sunset drive, tumhara haath mere haath mein – sukoon", img: "memory6.jpg", surprise: "magic", magic: "✨ magic sparkle!" },
-    { text: "🥺 tum jab ro di thi mere kandhe par", img: "memory7.jpg", surprise: "filter", filter: "heart-filter", message: "❤️ ab tumhari aankhon mein khushi hai" },
-    { text: "💋 pehla kiss – itna pyaara, jaise film ho", img: "memory8.jpg", surprise: "iloveyou", language: "French: Je t'aime", emoji: "🇫🇷" },
-    { text: "💬 har subah ka 'good morning' text – din ban jaata hai", img: "memory9.jpg", surprise: "song", song: "🎵 tum hi ho... 🎵" },
-    { text: "🌟 tumne mujh par bharosa kiya jab khud par nahi tha", img: "memory10.jpg", surprise: "baby", baby: "👶 dekho kaun baby jaisa cute hai? tum! 😘" },
+    { text: "💌 pehli baar jab tum muskurayi – mera dil pighal gaya", img: "❤️", surprise: "quiz", question: "humari pehli date kis jagah thi?", options: ["Cafe", "Park", "Mall", "College"], correct: 1 },
+    { text: "🌙 wo 4 am call jab humne sapne share kiye", img: "🌙", surprise: "gift", gift: "🎁 chhota sa gift khole?", emoji: "🎀" },
+    { text: "🍦 pehli ice cream date – tumne chocolate, maine strawberry", img: "🍦", surprise: "task", task: "mujhe ek virtual kiss do 💋" },
+    { text: "📸 wo mast selfie jisme hum dono haste haste behal hue", img: "📸", surprise: "note", note: "💌 tumhari hassi meri duniya hai" },
+    { text: "🎁 wo chhota sa note tumne diya tha – aaj bhi rakha hai", img: "🎁", surprise: "hug", hug: "🤗 teddy bear ne gale laga liya!" },
+    { text: "🌅 sunset drive, tumhara haath mere haath mein – sukoon", img: "🌅", surprise: "magic", magic: "✨ magic sparkle!" },
+    { text: "🥺 tum jab ro di thi mere kandhe par", img: "🥺", surprise: "filter", filter: "heart-filter", message: "❤️ ab tumhari aankhon mein khushi hai" },
+    { text: "💋 pehla kiss – itna pyaara, jaise film ho", img: "💋", surprise: "iloveyou", language: "French: Je t'aime", emoji: "🇫🇷" },
+    { text: "💬 har subah ka 'good morning' text – din ban jaata hai", img: "💬", surprise: "song", song: "🎵 tum hi ho... 🎵" },
+    { text: "🌟 tumne mujh par bharosa kiya jab khud par nahi tha", img: "🌟", surprise: "baby", baby: "👶 dekho kaun baby jaisa cute hai? tum! 😘" },
     { text: "💞 us pal jaise light si lagi – tum hi ho meri duniya", img: "💞", surprise: "sparkle", sparkle: "✨✨✨" },
     { text: "🏡 chhota sa ghar, bagiya – tumhare sang sapna", img: "🏡", surprise: "cuddle", cuddle: "🧸 teddy ne kaha: main bhi saath rahunga" },
     { text: "👵👫 saath mein budhe honge, haath pakde hue", img: "👫", surprise: "promise", promise: "💍 100 saal ka promise! pakda?" },
-    { text: "🎶 wo gaana jo hum dono ko pasand hai – ab 'our song'", img: "🎶", surprise: "dance", dance: "💃 thoda dance karo? next dabao!" }
+    { text: "🎶 wo gaana jo hum dono ko pasand hai – ab 'our song'", img: "🎶", surprise: "dance", dance: "💃 thoda dance karo? next dabao!" },
+    { text: "💕 aur ek khaas yaad – tumse milke poori hui duniya", img: "💕", surprise: "special", special: "💖 I LOVE YOU ANJALI 💖" }
   ];
 
   let currentMemoryIndex = 0;
   let memoryTotalSeconds = 120;
   let memoryElapsed = 0;
   let memoryTimerInterval = null;
+  let autoAdvanceTimer = null;
+
+  // Canvas setup
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  // Heart catching game functions (simplified)
+  function updateLoveMeter() {
+    loveFill.style.width = (score / WIN_SCORE * 100) + '%';
+  }
+
+  // Screen management
+  function showScreen(screen) {
+    startScreen.classList.add('hidden');
+    proposalScreen.classList.add('hidden');
+    memoryScreen.classList.add('hidden');
+    celebrationScreen.classList.add('hidden');
+    screen.classList.remove('hidden');
+  }
 
   // Animation functions
   function createSparkle(x, y, count = 8) {
@@ -579,8 +593,6 @@
       el.innerText = ['✨', '💫', '⭐', '🌟'][Math.floor(Math.random() * 4)];
       el.style.left = x + 'px';
       el.style.top = y + 'px';
-      el.style.setProperty('--x', (Math.random() - 0.5) * 200 + 'px');
-      el.style.setProperty('--y', -100 - Math.random() * 100 + 'px');
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 1000);
     }
@@ -598,405 +610,35 @@
     }
   }
 
-  // Surprise handlers
-  function showSurprise(memory) {
-    surpriseContainer.style.display = 'block';
-    surpriseContainer.innerHTML = '';
-    surpriseContainer.className = 'surprise-box';
-
-    memoryImage.classList.remove('heart-filter');
-    memoryMsg.classList.remove('glow');
-
-    switch (memory.surprise) {
-      case 'quiz':
-        surpriseContainer.innerHTML = `
-          <div style="font-size:1.8rem;">❓ ${memory.question}</div>
-          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:10px;">
-            ${memory.options.map((opt, i) => `<button class="surprise-button" style="font-size:1.2rem;" onclick="handleQuiz(${i}, ${memory.correct})">${opt}</button>`).join('')}
-          </div>
-          <div id="quiz-result" style="margin-top:10px;"></div>
-        `;
-        window.handleQuiz = (selected, correct) => {
-          const result = document.getElementById('quiz-result');
-          const rect = event.target.getBoundingClientRect();
-          if (selected === correct) {
-            result.innerHTML = '🎉 sahi jawab! tum meri smart girl ho ❤️';
-            createHearts(rect.left + rect.width/2, rect.top);
-          } else {
-            result.innerHTML = '😜 thoda aur socho... par tum cute ho!';
-            createSparkle(rect.left + rect.width/2, rect.top, 5);
-          }
-        };
-        break;
-
-      case 'gift':
-        surpriseContainer.innerHTML = `
-          <div class="envelope" id="gift-envelope" onclick="openGift()">
-            <div style="font-size:1.5rem;">${memory.gift}</div>
-          </div>
-          <div id="gift-message" style="display:none;" class="message-reveal"></div>
-        `;
-        window.openGift = () => {
-          const envelope = document.getElementById('gift-envelope');
-          const msgDiv = document.getElementById('gift-message');
-          envelope.classList.add('open');
-          envelope.style.pointerEvents = 'none';
-          msgDiv.style.display = 'block';
-          msgDiv.innerHTML = '🎀 ANDAR HAI: 1 MILLION KISSES! 💋💋💋';
-          const rect = envelope.getBoundingClientRect();
-          createHearts(rect.left + rect.width/2, rect.top);
-        };
-        break;
-
-      case 'task':
-        surpriseContainer.innerHTML = `
-          <div>${memory.task}</div>
-          <button class="surprise-button" style="margin-top:10px;" onclick="doKiss()">💋 yahan dabao</button>
-        `;
-        window.doKiss = () => {
-          alert('😘 MUAH! love you baby');
-          const rect = event.target.getBoundingClientRect();
-          createHearts(rect.left + rect.width/2, rect.top, 10);
-        };
-        break;
-
-      case 'note':
-        surpriseContainer.innerHTML = `<div class="message-reveal">💌 ${memory.note}</div>`;
-        break;
-
-      case 'hug':
-        surpriseContainer.innerHTML = `<div class="message-reveal">${memory.hug} 🤗🧸</div>`;
-        memoryMsg.classList.add('glow');
-        break;
-
-      case 'magic':
-        surpriseContainer.innerHTML = `<div class="message-reveal">✨✨✨ ab magic hoga! ✨✨✨</div>`;
-        createSparkle(window.innerWidth/2, window.innerHeight/2, 15);
-        break;
-
-      case 'filter':
-        memoryImage.classList.add('heart-filter');
-        surpriseContainer.innerHTML = `<div class="message-reveal">${memory.message || ''} ❤️</div>`;
-        break;
-
-      case 'iloveyou':
-        surpriseContainer.innerHTML = `<div class="message-reveal">${memory.language} ${memory.emoji} 💕</div>`;
-        break;
-
-      case 'song':
-        surpriseContainer.innerHTML = `<div class="message-reveal">${memory.song} 🎶</div>`;
-        break;
-
-      case 'baby':
-        surpriseContainer.innerHTML = `<div class="message-reveal">${memory.baby} 👶🍼</div>`;
-        break;
-
-      case 'sparkle':
-        surpriseContainer.innerHTML = `<div class="message-reveal">${memory.sparkle}</div>`;
-        createSparkle(window.innerWidth/2, window.innerHeight/2, 20);
-        break;
-
-      case 'cuddle':
-        surpriseContainer.innerHTML = `<div class="message-reveal">${memory.cuddle}</div>`;
-        break;
-
-      case 'promise':
-        surpriseContainer.innerHTML = `
-          <div>${memory.promise}</div>
-          <button class="surprise-button" style="margin-top:10px;" onclick="doPromise()">haan pakda</button>
-        `;
-        window.doPromise = () => {
-          alert('💍 pakka promise! 100 saal');
-          const rect = event.target.getBoundingClientRect();
-          createHearts(rect.left + rect.width/2, rect.top);
-        };
-        break;
-
-      case 'dance':
-        surpriseContainer.innerHTML = `<div class="message-reveal">${memory.dance} 💃🕺</div>`;
-        break;
-
-      default:
-        surpriseContainer.style.display = 'none';
-    }
+  function createBigHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'big-heart';
+    heart.innerText = '❤️';
+    bigHeartContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 1400);
   }
 
-  function showMemory(index) {
+  // Memory navigation
+  function loadMemory(index) {
     const memory = memories[index];
     memoryMsg.innerText = memory.text;
-    memoryImage.innerHTML = '';
+    memoryImage.innerText = memory.img; // For emoji images
+    // If you have actual images, you'd set innerHTML with <img>
     
-    if (typeof memory.img === 'string' && (memory.img.endsWith('.jpg') || memory.img.endsWith('.jpeg') || memory.img.endsWith('.png') || memory.img.endsWith('.gif'))) {
-      const img = document.createElement('img');
-      img.src = memory.img;
-      img.alt = 'memory image';
-      memoryImage.appendChild(img);
-    } else {
-      memoryImage.innerText = memory.img;
-    }
-
-    showSurprise(memory);
-    memoryCard.classList.add('pop');
-    setTimeout(() => memoryCard.classList.remove('pop'), 500);
-  }
-
-  function startMemoryLane() {
-    currentMemoryIndex = 0;
-    memoryElapsed = 0;
-    showMemory(currentMemoryIndex);
-    memoryProgress.style.width = '0%';
-    
-    if (memoryTimerInterval) clearInterval(memoryTimerInterval);
-    memoryTimerInterval = setInterval(() => {
-      memoryElapsed += 1;
-      let percent = (memoryElapsed / memoryTotalSeconds) * 100;
-      memoryProgress.style.width = Math.min(percent, 100) + '%';
-      let left = memoryTotalSeconds - memoryElapsed;
-      let mins = Math.floor(left / 60);
-      let secs = left % 60;
-      memoryTimerDisplay.innerText = `⏳ bachi ${mins}:${secs < 10 ? '0' : ''}${secs} – phir hogi shaadi ⏳`;
-      if (memoryElapsed >= memoryTotalSeconds) goToCelebration();
-    }, 1000);
-  }
-
-  function goToCelebration() {
-    if (memoryTimerInterval) clearInterval(memoryTimerInterval);
-    memoryScreen.classList.add('hidden');
-    gameState = 'CELEBRATION';
-    celebrationScreen.classList.remove('hidden');
-    for (let i = 0; i < 60; i++) confettiParticles.push(new Confetti());
-  }
-
-  // Navigation
-  nextBtn.addEventListener('click', (e) => {
-    currentMemoryIndex = (currentMemoryIndex + 1) % memories.length;
-    showMemory(currentMemoryIndex);
-    const rect = nextBtn.getBoundingClientRect();
-    createSparkle(rect.left + rect.width/2, rect.top, 6);
-  });
-
-  prevBtn.addEventListener('click', (e) => {
-    currentMemoryIndex = (currentMemoryIndex - 1 + memories.length) % memories.length;
-    showMemory(currentMemoryIndex);
-    const rect = prevBtn.getBoundingClientRect();
-    createSparkle(rect.left + rect.width/2, rect.top, 6);
-  });
-
-  // Rest of the code (Player, Heart, Confetti, game loop, etc.) remains same
-  // ... (previous working code for game, player, etc.)
-
-  // For brevity, including essential parts
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    if (player) player.x = Math.min(Math.max(player.x, 0), canvas.width - player.w);
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  class Player {
-    constructor() {
-      this.w = 120; this.h = 100;
-      this.x = canvas.width / 2 - this.w / 2;
-      this.y = canvas.height - 120;
-    }
-    draw() {
-      ctx.shadowColor = '#ff99cc'; ctx.shadowBlur = 40;
-      ctx.fillStyle = '#ffb3c6';
-      ctx.beginPath();
-      ctx.ellipse(this.x + this.w/2, this.y - 15, this.w/2, this.h/2, 0, 0, Math.PI*2);
-      ctx.fill();
-      // eyes, etc.
-    }
-  }
-
-  class Heart {
-    constructor() {
-      this.size = Math.floor(Math.random() * 35 + 30);
-      this.x = Math.random() * (canvas.width - 50);
-      this.y = -this.size;
-      this.speed = Math.random() * 2.5 + 1.5;
-    }
-    draw() {
-      ctx.font = `${this.size}px 'Segoe UI'`;
-      ctx.shadowColor = '#ff99cc';
-      ctx.shadowBlur = 30;
-      ctx.fillStyle = '#ff3385';
-      ctx.fillText('❤️', this.x, this.y);
-    }
-    update() { this.y += this.speed; }
-  }
-
-  class Confetti {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.size = Math.random() * 8 + 3;
-      this.color = `hsl(${Math.random()*30 + 330}, 80%, 70%)`;
-      this.speedY = Math.random() * 3 + 1;
-      this.speedX = (Math.random() - 0.5) * 1.2;
-    }
-    update() {
-      this.y += this.speedY;
-      this.x += this.speedX;
-      if (this.y > canvas.height) {
-        this.y = -10;
-        this.x = Math.random() * canvas.width;
-      }
-    }
-    draw() {
-      ctx.fillStyle = this.color;
-      ctx.shadowBlur = 20;
-      ctx.fillRect(this.x, this.y, this.size, this.size);
-    }
-  }
-
-  function gameLoop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (gameState !== 'START') {
-      if (gameState === 'PLAYING') {
-        if (player) player.draw();
-        if (Math.random() < 0.03) hearts.push(new Heart());
-        hearts.forEach((heart, idx) => {
-          heart.update();
-          heart.draw();
-          if (player && heart.y > player.y-60 && heart.x > player.x-30 && heart.x < player.x + player.w + 30) {
-            hearts.splice(idx, 1);
-            score = Math.min(score + 1, WIN_SCORE);
-            updateLoveMeter();
-            for (let i=0; i<3; i++) confettiParticles.push(new Confetti());
-            if (score >= WIN_SCORE && gameState === 'PLAYING') triggerProposal();
-          }
-          if (heart.y > canvas.height + 60) hearts.splice(idx, 1);
-        });
-      } else {
-        if (Math.random() < 0.01) hearts.push(new Heart());
-        hearts.forEach(heart => { heart.update(); heart.draw(); });
-      }
-
-      if (gameState === 'MEMORY' && Math.random() < 0.1) {
-        memoryHeartTrail.push({ x: Math.random()*canvas.width, y: canvas.height+20, life: 1.0 });
-      }
-      memoryHeartTrail.forEach((h, idx) => {
-        h.y -= 1.8; h.life -= 0.005;
-        ctx.globalAlpha = h.life;
-        ctx.font = '35px Arial';
-        ctx.fillStyle = '#ff99bb';
-        ctx.fillText('💕', h.x, h.y);
-        if (h.life <= 0 || h.y < -40) memoryHeartTrail.splice(idx, 1);
-      });
-      ctx.globalAlpha = 1;
-
-      if (gameState === 'CELEBRATION') {
-        for (let i=0; i<3; i++) confettiParticles.push(new Confetti());
-        confettiParticles.forEach(p => { p.update(); p.draw(); });
-      }
-    }
-    requestAnimationFrame(gameLoop);
-  }
-  gameLoop();
-
-  function updateLoveMeter() {
-    loveFill.style.width = (score / WIN_SCORE * 100) + '%';
-  }
-
-  function triggerProposal() {
-    gameState = 'PROPOSAL';
-    hearts = [];
-    proposalScreen.classList.remove('hidden');
-    if (noBtn) noBtn.style.position = 'static';
-  }
-
-  function showBigHeart() {
-    const heartDiv = document.createElement('div');
-    heartDiv.className = 'big-heart';
-    heartDiv.innerText = '❤️';
-    bigHeartContainer.appendChild(heartDiv);
-    setTimeout(() => heartDiv.remove(), 1400);
-  }
-
-  document.getElementById('start-btn').addEventListener('click', () => {
-    showBigHeart();
-    setTimeout(() => {
-      player = new Player();
-      score = 0;
-      hearts = [];
-      updateLoveMeter();
-      gameState = 'PLAYING';
-      startScreen.classList.add('hidden');
-      proposalScreen.classList.add('hidden');
-      memoryScreen.classList.add('hidden');
-      celebrationScreen.classList.add('hidden');
-    }, 600);
-  });
-
-  yesBtn.addEventListener('click', () => {
-    proposalScreen.classList.add('hidden');
-    gameState = 'MEMORY';
-    memoryScreen.classList.remove('hidden');
-    startMemoryLane();
-  });
-
-  function teleportNoButton() {
-    if (!noBtn) return;
-    noBtn.style.position = 'fixed';
-    const btnWidth = noBtn.offsetWidth || 120;
-    const btnHeight = noBtn.offsetHeight || 50;
-    const maxX = window.innerWidth - btnWidth - 20;
-    const maxY = window.innerHeight - btnHeight - 20;
-    const x = Math.max(10, Math.min(maxX, Math.random() * maxX));
-    const y = Math.max(10, Math.min(maxY, Math.random() * maxY));
-    noBtn.style.left = x + 'px';
-    noBtn.style.top = y + 'px';
-    if (Math.random() < 0.3) {
-      const msgs = ['🙈 aah gaya!', '💨 pakdo na', '😜 nahi milegi', '❤️ haan bol do'];
-      noBtn.innerText = msgs[Math.floor(Math.random() * msgs.length)];
-    } else noBtn.innerText = 'Nahi 😜';
-  }
-
-  if (noBtn) {
-    noBtn.addEventListener('mouseenter', teleportNoButton);
-    noBtn.addEventListener('click', (e) => { e.preventDefault(); teleportNoButton(); });
-    noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); teleportNoButton(); });
-  }
-
-  replayBtn.addEventListener('click', () => {
-    gameState = 'START';
-    score = 0;
-    hearts = [];
-    confettiParticles = [];
-    updateLoveMeter();
-    celebrationScreen.classList.add('hidden');
-    startScreen.classList.remove('hidden');
-    if (memoryTimerInterval) clearInterval(memoryTimerInterval);
-    if (noBtn) {
-      noBtn.style.position = 'static';
-      noBtn.innerText = 'Nahi 😜';
-    }
+    // Hide surprise container initially
     surpriseContainer.style.display = 'none';
-  });
-
-  window.addEventListener('mousemove', (e) => {
-    if (gameState === 'PLAYING' && player) {
-      let newX = e.clientX - player.w / 2;
-      newX = Math.max(0, Math.min(canvas.width - player.w, newX));
-      player.x = newX;
+    surpriseContainer.innerHTML = '';
+    
+    // Show surprise if any
+    if (memory.surprise) {
+      showSurprise(memory);
     }
-  });
-
-  window.addEventListener('touchmove', (e) => {
-    e.preventDefault();
-    if (gameState === 'PLAYING' && player && e.touches[0]) {
-      let newX = e.touches[0].clientX - player.w / 2;
-      newX = Math.max(0, Math.min(canvas.width - player.w, newX));
-      player.x = newX;
+    
+    // Reset any auto-advance timer
+    if (autoAdvanceTimer) {
+      clearTimeout(autoAdvanceTimer);
+      autoAdvanceTimer = null;
     }
-  }, { passive: false });
-
-  window.addEventListener('resize', () => {
-    if (gameState === 'PROPOSAL' && noBtn) teleportNoButton();
-  });
-})();
-</script>
-</body>
-</html>
+    
+    // Animate card
+  
